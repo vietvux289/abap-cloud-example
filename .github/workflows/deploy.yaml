@@ -1,4 +1,4 @@
-name: Deploy Multiple Sites
+name: Deploy Multiple Test Sites
 
 on:
   push:
@@ -20,38 +20,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
-      # Upload từng site
-      - name: Upload site1
+      # Upload toàn bộ repo (bao gồm các folder Test #1...#5)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./site1
-          name: site1
+          path: ./
 
-      - name: Upload site2
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./site2
-          name: site2
-
-      - name: Upload site3
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./site3
-          name: site3
-
-      - name: Upload site4
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./site4
-          name: site4
-
-      - name: Upload site5
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./site5
-          name: site5
-
-      # Deploy tất cả
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
