@@ -1,0 +1,57 @@
+name: Deploy Multiple Sites
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      # Upload từng site
+      - name: Upload site1
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site1
+          name: site1
+
+      - name: Upload site2
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site2
+          name: site2
+
+      - name: Upload site3
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site3
+          name: site3
+
+      - name: Upload site4
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site4
+          name: site4
+
+      - name: Upload site5
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./site5
+          name: site5
+
+      # Deploy tất cả
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
